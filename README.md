@@ -2,7 +2,7 @@
 
 LedgerBox is a private collection site for coins first and bonds later. The MVP focuses on a shared authenticated coin collection built with Next.js App Router, Supabase, and Vercel.
 
-Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, and the first coin collection browse/search/detail surface with cards, table view, filters, and persisted view mode.
+Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, and the first CRUD/category/photo management flow for coins.
 
 ## Technology
 
@@ -31,6 +31,7 @@ Current implementation status: the repository now contains the agreed project sc
 - Route protection is enforced twice: in `proxy.ts` for request-time redirects and in `src/app/(app)/layout.tsx` for server-rendered protected surfaces
 - The protected shell keeps the sidebar layout mounted across App Router navigations, with `Дашборд` as a top-level route and `Монети` expanded into `Колекція` and `Бажанки`
 - Coin collection search and filter logic stays inside `src/features/coins/collection` and is not promoted into a cross-domain shared helper
+- Coin CRUD, category management, and photo import/upload logic are split across `src/features/coins/collection`, `src/features/coins/categories`, and `src/features/coins/photos`
 
 See:
 - [docs/roadmap.md](docs/roadmap.md)
@@ -39,6 +40,7 @@ See:
 - [plan/mvp/02-auth-and-access-control.md](plan/mvp/02-auth-and-access-control.md)
 - [plan/mvp/03-app-shell-and-navigation.md](plan/mvp/03-app-shell-and-navigation.md)
 - [plan/mvp/04-coins-browse-search-and-details.md](plan/mvp/04-coins-browse-search-and-details.md)
+- [plan/mvp/05-coins-crud-categories-and-photos.md](plan/mvp/05-coins-crud-categories-and-photos.md)
 - [docs/adr/0001-use-src-application-root.md](docs/adr/0001-use-src-application-root.md)
 - [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md)
 - [skills/project-rules/SKILL.md](skills/project-rules/SKILL.md)
@@ -96,6 +98,15 @@ See:
 - `src/app/(app)/coins/collection/page.tsx` provides search by name, filters by year/category/precious status, and two browse modes: cards and table
 - `src/features/coins/collection/ui/collection-browser.tsx` persists the selected view mode in `localStorage`
 - `src/app/(app)/coins/collection/[coinId]/page.tsx` renders the detail card with all current fields and exactly two separate photo slots: obverse and reverse
+
+## Coin CRUD And Photos
+
+- `src/app/(app)/coins/collection/new/page.tsx` and `src/app/(app)/coins/collection/[coinId]/edit/page.tsx` provide create/edit flows for all current MVP coin fields
+- `src/features/coins/collection/server/actions.ts` handles create, update, and delete plus photo-slot synchronization and route revalidation
+- `src/app/(app)/coins/collection/categories/page.tsx` provides category create/rename management without hard-coding future values
+- `src/features/coins/photos/client/process-local-photo.ts` performs client-side local image processing to WebP ≤ 1 MB before submit
+- `src/features/coins/photos/server/import.ts` and `src/app/api/coins/photos/import/route.ts` implement secure backend URL import with validation and server-side image normalization via `sharp`
+- Storage cleanup for replaced/deleted photos is handled in `src/features/coins/photos/server/storage.ts`
 
 ## Planning flow
 

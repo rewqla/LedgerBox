@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { CollectionBrowser } from '@/features/coins/collection/ui/collection-browser';
 import { CollectionFiltersForm } from '@/features/coins/collection/ui/collection-filters-form';
 import { normalizeCollectionFilters } from '@/features/coins/collection/server/filters';
@@ -36,6 +37,31 @@ export default async function CoinsCollectionPage({
       </section>
 
       <CollectionFiltersForm filters={filters} options={filterOptions} />
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+        <Link
+          href="/coins/collection/new"
+          style={{
+            borderRadius: '999px',
+            padding: '0.8rem 1rem',
+            background: 'var(--accent)',
+            color: 'var(--accent-foreground)',
+            fontWeight: 600
+          }}
+        >
+          Додати монету
+        </Link>
+        <Link
+          href="/coins/collection/categories"
+          style={{
+            borderRadius: '999px',
+            padding: '0.8rem 1rem',
+            border: '1px solid var(--border)',
+            background: '#fff'
+          }}
+        >
+          Керувати категоріями
+        </Link>
+      </div>
       <CollectionBrowser coins={coins} filters={filters} />
     </div>
   );
