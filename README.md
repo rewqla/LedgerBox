@@ -2,7 +2,7 @@
 
 LedgerBox is a private collection site for coins first and bonds later. The MVP focuses on a shared authenticated coin collection built with Next.js App Router, Supabase, and Vercel.
 
-Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, and the first CRUD/category/photo management flow for coins.
+Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, the first CRUD/category/photo management flow for coins, and the first compositional dashboard with coin analytics widgets.
 
 ## Technology
 
@@ -32,6 +32,7 @@ Current implementation status: the repository now contains the agreed project sc
 - The protected shell keeps the sidebar layout mounted across App Router navigations, with `Дашборд` as a top-level route and `Монети` expanded into `Колекція` and `Бажанки`
 - Coin collection search and filter logic stays inside `src/features/coins/collection` and is not promoted into a cross-domain shared helper
 - Coin CRUD, category management, and photo import/upload logic are split across `src/features/coins/collection`, `src/features/coins/categories`, and `src/features/coins/photos`
+- Dashboard composition stays in `src/app/(app)/dashboard`, while coin-specific analytics queries and widgets live in `src/features/coins/dashboard`
 
 See:
 - [docs/roadmap.md](docs/roadmap.md)
@@ -41,6 +42,7 @@ See:
 - [plan/mvp/03-app-shell-and-navigation.md](plan/mvp/03-app-shell-and-navigation.md)
 - [plan/mvp/04-coins-browse-search-and-details.md](plan/mvp/04-coins-browse-search-and-details.md)
 - [plan/mvp/05-coins-crud-categories-and-photos.md](plan/mvp/05-coins-crud-categories-and-photos.md)
+- [plan/mvp/06-dashboard-and-analytics.md](plan/mvp/06-dashboard-and-analytics.md)
 - [docs/adr/0001-use-src-application-root.md](docs/adr/0001-use-src-application-root.md)
 - [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md)
 - [skills/project-rules/SKILL.md](skills/project-rules/SKILL.md)
@@ -107,6 +109,14 @@ See:
 - `src/features/coins/photos/client/process-local-photo.ts` performs client-side local image processing to WebP ≤ 1 MB before submit
 - `src/features/coins/photos/server/import.ts` and `src/app/api/coins/photos/import/route.ts` implement secure backend URL import with validation and server-side image normalization via `sharp`
 - Storage cleanup for replaced/deleted photos is handled in `src/features/coins/photos/server/storage.ts`
+
+## Dashboard And Analytics
+
+- `src/app/(app)/dashboard/page.tsx` is now a real compositional dashboard route instead of a temporary auth placeholder
+- `src/features/coins/dashboard/server/queries.ts` builds the coin analytics snapshot for totals, breakdowns, recent additions, and time-series widgets
+- `src/features/coins/dashboard/ui/coins-dashboard.tsx` renders summary cards, category and precious breakdowns, latest additions, cumulative investment chart, spend by acquired year, and mint-year histogram
+- The dashboard includes a dedicated empty state when the collection has no coins yet
+- `tests/integration/dashboard/queries.test.ts` covers the dashboard snapshot math and aggregate shapes
 
 ## Planning flow
 
