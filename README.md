@@ -2,7 +2,7 @@
 
 LedgerBox is a private collection site for coins first and bonds later. The MVP focuses on a shared authenticated coin collection built with Next.js App Router, Supabase, and Vercel.
 
-Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, and the first protected app shell with sidebar navigation for dashboard, coin collection, and wishlist routes.
+Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, and the first coin collection browse/search/detail surface with cards, table view, filters, and persisted view mode.
 
 ## Technology
 
@@ -30,6 +30,7 @@ Current implementation status: the repository now contains the agreed project sc
 - Access control is based on `public.profiles`; domain tables stay shared and do not use `owner_id`
 - Route protection is enforced twice: in `proxy.ts` for request-time redirects and in `src/app/(app)/layout.tsx` for server-rendered protected surfaces
 - The protected shell keeps the sidebar layout mounted across App Router navigations, with `Дашборд` as a top-level route and `Монети` expanded into `Колекція` and `Бажанки`
+- Coin collection search and filter logic stays inside `src/features/coins/collection` and is not promoted into a cross-domain shared helper
 
 See:
 - [docs/roadmap.md](docs/roadmap.md)
@@ -37,6 +38,7 @@ See:
 - [plan/mvp/01-db-architecture-and-migrations.md](plan/mvp/01-db-architecture-and-migrations.md)
 - [plan/mvp/02-auth-and-access-control.md](plan/mvp/02-auth-and-access-control.md)
 - [plan/mvp/03-app-shell-and-navigation.md](plan/mvp/03-app-shell-and-navigation.md)
+- [plan/mvp/04-coins-browse-search-and-details.md](plan/mvp/04-coins-browse-search-and-details.md)
 - [docs/adr/0001-use-src-application-root.md](docs/adr/0001-use-src-application-root.md)
 - [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md)
 - [skills/project-rules/SKILL.md](skills/project-rules/SKILL.md)
@@ -86,6 +88,14 @@ See:
 - `src/shared/ui/navigation.ts` contains the canonical sidebar navigation model and active-state helpers
 - `src/shared/ui/sidebar-nav.tsx` renders the expandable domain navigation with the muted `ОВДП` placeholder marked `скоро`
 - `src/app/(app)/coins/collection/page.tsx` and `src/app/(app)/coins/wishlist/page.tsx` are the current domain entry routes for the `Монети` section
+
+## Coin Collection
+
+- `src/features/coins/collection/server/queries.ts` reads the collection list, filter options, and detail cards directly from the `coins` schema
+- `src/features/coins/collection/server/filters.ts` owns collection-specific search/filter normalization and view-mode helpers
+- `src/app/(app)/coins/collection/page.tsx` provides search by name, filters by year/category/precious status, and two browse modes: cards and table
+- `src/features/coins/collection/ui/collection-browser.tsx` persists the selected view mode in `localStorage`
+- `src/app/(app)/coins/collection/[coinId]/page.tsx` renders the detail card with all current fields and exactly two separate photo slots: obverse and reverse
 
 ## Planning flow
 
