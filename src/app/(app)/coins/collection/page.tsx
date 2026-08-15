@@ -61,6 +61,17 @@ export default async function CoinsCollectionPage({
         >
           Керувати категоріями
         </Link>
+        <Link
+          href="/coins/collection/import-export"
+          style={{
+            borderRadius: '999px',
+            padding: '0.8rem 1rem',
+            border: '1px solid var(--border)',
+            background: '#fff'
+          }}
+        >
+          Імпорт / експорт
+        </Link>
       </div>
       <CollectionBrowser coins={coins} filters={filters} />
     </div>

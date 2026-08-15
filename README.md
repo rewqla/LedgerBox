@@ -2,7 +2,7 @@
 
 LedgerBox is a private collection site for coins first and bonds later. The MVP focuses on a shared authenticated coin collection built with Next.js App Router, Supabase, and Vercel.
 
-Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, the first CRUD/category/photo management flow for coins, the first compositional dashboard with coin analytics widgets, and a separate text-based wishlist flow for coins.
+Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, the first CRUD/category/photo management flow for coins, the first compositional dashboard with coin analytics widgets, a separate text-based wishlist flow for coins, and MVP JSON import/export for the shared coin collection.
 
 ## Technology
 
@@ -44,6 +44,7 @@ See:
 - [plan/mvp/05-coins-crud-categories-and-photos.md](plan/mvp/05-coins-crud-categories-and-photos.md)
 - [plan/mvp/06-dashboard-and-analytics.md](plan/mvp/06-dashboard-and-analytics.md)
 - [plan/mvp/07-wishlist.md](plan/mvp/07-wishlist.md)
+- [plan/mvp/08-import-export.md](plan/mvp/08-import-export.md)
 - [docs/adr/0001-use-src-application-root.md](docs/adr/0001-use-src-application-root.md)
 - [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md)
 - [skills/project-rules/SKILL.md](skills/project-rules/SKILL.md)
@@ -127,6 +128,17 @@ See:
 - `src/features/coins/wishlist/ui/wishlist-manager.tsx` keeps wishlist separate from the main collection and exposes inline edit plus `Придбано` and delete actions
 - One-click transfer from wishlist into the collection is intentionally left as a stretch improvement, not part of the current MVP step
 - `tests/integration/wishlist/helpers.test.ts` and `tests/integration/wishlist/database.test.js` cover wishlist validation and CRUD state changes
+
+## Import And Export
+
+- `src/app/(app)/coins/collection/import-export/page.tsx` provides the dedicated import/export surface for the collection
+- `src/app/api/coins/collection/export/route.ts` exports the whole shared collection as `ledgerbox-coins-export.json`
+- `src/features/coins/import-export/server/services.ts` handles export generation and import processing with per-row reporting
+- The MVP transfer format is JSON only; CSV is intentionally postponed
+- Photos and photo paths are explicitly excluded from the portable payload
+- Duplicate re-imports are not merged or updated; they are skipped and surfaced in the import report
+- Missing categories are recreated from `categoryName` during import so the textual collection structure can be restored
+- `tests/integration/import-export/helpers.test.ts` covers the payload contract, validation, duplicate signature logic, and summary reporting
 
 ## Planning flow
 
