@@ -1,0 +1,35 @@
+name: Database Checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v2
+        with:
+          version: latest
+          github-token: ${{ github.token }}
+
+      - name: Install test dependencies
+        run: npm install
+
+      - name: Start local Supabase stack
+        run: supabase start
+
+      - name: Run database integration tests
+        env:
+          TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+        run: npm run test:integration
