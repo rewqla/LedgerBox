@@ -2,7 +2,7 @@
 
 LedgerBox is a private collection site for coins first and bonds later. The MVP focuses on a shared authenticated coin collection built with Next.js App Router, Supabase, and Vercel.
 
-Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, the first CRUD/category/photo management flow for coins, and the first compositional dashboard with coin analytics widgets.
+Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, the first CRUD/category/photo management flow for coins, the first compositional dashboard with coin analytics widgets, and a separate text-based wishlist flow for coins.
 
 ## Technology
 
@@ -43,6 +43,7 @@ See:
 - [plan/mvp/04-coins-browse-search-and-details.md](plan/mvp/04-coins-browse-search-and-details.md)
 - [plan/mvp/05-coins-crud-categories-and-photos.md](plan/mvp/05-coins-crud-categories-and-photos.md)
 - [plan/mvp/06-dashboard-and-analytics.md](plan/mvp/06-dashboard-and-analytics.md)
+- [plan/mvp/07-wishlist.md](plan/mvp/07-wishlist.md)
 - [docs/adr/0001-use-src-application-root.md](docs/adr/0001-use-src-application-root.md)
 - [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md)
 - [skills/project-rules/SKILL.md](skills/project-rules/SKILL.md)
@@ -117,6 +118,15 @@ See:
 - `src/features/coins/dashboard/ui/coins-dashboard.tsx` renders summary cards, category and precious breakdowns, latest additions, cumulative investment chart, spend by acquired year, and mint-year histogram
 - The dashboard includes a dedicated empty state when the collection has no coins yet
 - `tests/integration/dashboard/queries.test.ts` covers the dashboard snapshot math and aggregate shapes
+
+## Wishlist
+
+- `src/app/(app)/coins/wishlist/page.tsx` now renders a real wishlist surface instead of a placeholder route
+- `src/features/coins/wishlist/server/actions.ts` handles create, update, delete, and `Придбано` removal for `coins.wishlist_items`
+- `src/features/coins/wishlist/server/helpers.ts` validates the text-only wishlist payload: required coin name, required product URL, optional non-negative expected price
+- `src/features/coins/wishlist/ui/wishlist-manager.tsx` keeps wishlist separate from the main collection and exposes inline edit plus `Придбано` and delete actions
+- One-click transfer from wishlist into the collection is intentionally left as a stretch improvement, not part of the current MVP step
+- `tests/integration/wishlist/helpers.test.ts` and `tests/integration/wishlist/database.test.js` cover wishlist validation and CRUD state changes
 
 ## Planning flow
 
