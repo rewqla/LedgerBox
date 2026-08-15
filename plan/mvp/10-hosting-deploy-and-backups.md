@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `Хостинг та інфраструктура` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): це інфраструктурний крок, який не змінює межі доменних фіч, але має поважати міграційний і модульний підхід, зафіксований у `supabase/` та `shared/*`.
+Походить з розділу `Хостинг та інфраструктура` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): це інфраструктурний крок, який не змінює межі доменних фіч, але має поважати міграційний і модульний підхід, зафіксований у `supabase/` та `src/shared/*`.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -36,4 +36,3 @@
 - [ ] Процедура restore описана і хоча б один раз перевірена на тестовому середовищі
 
 ## Нотатки з реалізації
-

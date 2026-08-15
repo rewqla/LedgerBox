@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `UI / Дизайн` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): route composition у `app/`, shared layout/UI primitives у `shared/ui`, доменні entrypoints у `features/coins` і `features/bonds`, а dashboard лишається route-level composition.
+Походить з розділу `UI / Дизайн` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): route composition у `src/app/`, shared layout/UI primitives у `src/shared/ui`, доменні entrypoints у `src/features/coins` і `src/features/bonds`, а dashboard лишається route-level composition.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -26,4 +26,3 @@
 - [ ] Активний розділ і підрозділ візуально виділені (акцентний фон)
 
 ## Нотатки з реалізації
-

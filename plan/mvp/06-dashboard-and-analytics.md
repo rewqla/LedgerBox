@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `4. Dashboard / статистика` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): `app/(app)/dashboard` є compositional route, а coin-specific queries/read-models та віджети живуть у `features/coins/dashboard`.
+Походить з розділу `4. Dashboard / статистика` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): `src/app/(app)/dashboard` є compositional route, а coin-specific queries/read-models та віджети живуть у `src/features/coins/dashboard`.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -16,7 +16,7 @@
 
 ## Підзадачі
 - [ ] Визначити набір read-model queries для віджетів dashboard
-- [ ] Реалізувати route-level composition у `app/(app)/dashboard`
+- [ ] Реалізувати route-level composition у `src/app/(app)/dashboard`
 - [ ] Реалізувати summary cards і списки останніх доданих монет
 - [ ] Реалізувати агрегати за категоріями та дорогоцінністю
 - [ ] Реалізувати графіки вкладень у часі, за роками придбання та за `mint_year`
@@ -34,4 +34,3 @@
 - [ ] Гістограма монет за `mint_year`
 
 ## Нотатки з реалізації
-

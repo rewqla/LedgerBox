@@ -9,20 +9,20 @@ This repository follows the roadmap in [../../docs/roadmap.md](../../docs/roadma
 
 ## Architecture rules
 
-- The codebase uses `App Router + colocated vertical slices + explicit shared layer` as defined in [../../plan/mvp/00-architecture-and-structure.md](../../plan/mvp/00-architecture-and-structure.md).
+- The codebase uses `src/ + App Router + colocated vertical slices + explicit shared layer` as defined in [../../plan/mvp/00-architecture-and-structure.md](../../plan/mvp/00-architecture-and-structure.md).
 - New code belongs in the matching feature folder, not in global cross-cutting folders:
-  - `features/auth`
-  - `features/coins/collection`
-  - `features/coins/categories`
-  - `features/coins/photos`
-  - `features/coins/import-export`
-  - `features/coins/wishlist`
-  - `features/coins/dashboard`
-  - future `features/bonds`
-  - future `features/bonds/dashboard`
-- `app/` is for routes, layouts, route composition, and entrypoints.
-- `shared/` is only for explicit shared concerns such as auth helpers, UI primitives, Supabase/db infrastructure, and truly generic utilities.
-- `app/(app)/dashboard` is a compositional route, not a separate business domain.
+  - `src/features/auth`
+  - `src/features/coins/collection`
+  - `src/features/coins/categories`
+  - `src/features/coins/photos`
+  - `src/features/coins/import-export`
+  - `src/features/coins/wishlist`
+  - `src/features/coins/dashboard`
+  - future `src/features/bonds`
+  - future `src/features/bonds/dashboard`
+- `src/app/` is for routes, layouts, route composition, and entrypoints.
+- `src/shared/` is only for explicit shared concerns such as auth helpers, UI primitives, Supabase/db infrastructure, and truly generic utilities.
+- `src/app/(app)/dashboard` is a compositional route, not a separate business domain.
 - Direct imports between feature internals are not allowed. Do not import a component, query, action, schema, or helper from one feature into another except through an intentionally shared layer.
 - `wishlist` stays inside the `coins` domain in code because it maps to `coins.wishlist_items`.
 - Feature-specific search logic stays inside its feature. Only styles, presentational components, or truly generic UI behavior may be reused.

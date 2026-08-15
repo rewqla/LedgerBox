@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `5. Розділ "Бажанки" (вішлист)` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): wishlist живе в `features/coins/wishlist`, бо в БД це `coins.wishlist_items`.
+Походить з розділу `5. Розділ "Бажанки" (вішлист)` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): wishlist живе в `src/features/coins/wishlist`, бо в БД це `coins.wishlist_items`.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -13,7 +13,7 @@
 - [03-app-shell-and-navigation.md](03-app-shell-and-navigation.md)
 
 ## Підзадачі
-- [ ] Реалізувати CRUD для wishlist items у межах `features/coins/wishlist`
+- [ ] Реалізувати CRUD для wishlist items у межах `src/features/coins/wishlist`
 - [ ] Додати окремий список бажанок відокремлено від колекції
 - [ ] Реалізувати дію "придбано" як прибирання запису зі списку
 - [ ] Окремо зафіксувати рішення, чи робити one-click transfer у межах MVP, чи лишити як stretch
@@ -26,4 +26,3 @@
 - [ ] Перенесення в колекцію одним кліком — бажано, але не критично для MVP
 
 ## Нотатки з реалізації
-

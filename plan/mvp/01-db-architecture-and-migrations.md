@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `Архітектура бази даних (модульний моноліт)` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): домен `coins` реалізується у `features/coins/*`, спільний доступ через `shared/auth` та `shared/db`.
+Походить з розділу `Архітектура бази даних (модульний моноліт)` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): домен `coins` реалізується у `src/features/coins/*`, спільний доступ через `src/shared/auth` та `src/shared/db`.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -32,4 +32,3 @@
 - [ ] CI/CD автоматично застосовує нові міграції на production БД при мержі в `main` (GitHub Actions + Supabase CLI), без ручного кроку
 
 ## Нотатки з реалізації
-

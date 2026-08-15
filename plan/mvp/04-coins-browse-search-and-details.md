@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `2. Розділ "Монети" — перегляд і пошук` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе у `features/coins/collection`, а спільні примітиви лише в `shared/ui` та `shared/lib`.
+Походить з розділу `2. Розділ "Монети" — перегляд і пошук` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе у `src/features/coins/collection`, а спільні примітиви лише в `src/shared/ui` та `src/shared/lib`.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -16,7 +16,7 @@
 - [ ] Реалізувати collection page з двома режимами відображення
 - [ ] Додати read queries для списку й детальної картки монети
 - [ ] Реалізувати пошук за назвою
-- [ ] Зафіксувати правило, що пошукова логіка належить тільки `features/coins/collection` і не виноситься в reusable shared helper без окремої потреби
+- [ ] Зафіксувати правило, що пошукова логіка належить тільки `src/features/coins/collection` і не виноситься в reusable shared helper без окремої потреби
 - [ ] Дозволити реюз лише presentation-компонентів або стилів пошуку, але не доменної query/filter логіки
 - [ ] Реалізувати фільтри за роком, категорією і дорогоцінним металом
 - [ ] Підключити збереження view mode між сесіями
@@ -35,4 +35,3 @@
 - [ ] Кожен кінцевий файл фото у Storage ≤ 1 MB
 
 ## Нотатки з реалізації
-

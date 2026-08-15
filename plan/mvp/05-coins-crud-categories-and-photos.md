@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `3. Розділ "Монети" — адміністрування (CRUD)` та блоку `Файлове сховище — деталі` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе у `features/coins/collection`, `features/coins/categories`, `features/coins/photos`; shared-код лише для Supabase/storage infrastructure.
+Походить з розділу `3. Розділ "Монети" — адміністрування (CRUD)` та блоку `Файлове сховище — деталі` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе у `src/features/coins/collection`, `src/features/coins/categories`, `src/features/coins/photos`; shared-код лише для Supabase/storage infrastructure.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -36,4 +36,3 @@
 - [ ] Довільні нові категорії додаються без зміни коду
 
 ## Нотатки з реалізації
-

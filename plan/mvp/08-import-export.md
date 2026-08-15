@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `6. Розділ "Монети" — імпорт / експорт` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе у `features/coins/import-export`, а shared-шар торкається лише загальних validation/file helpers за реальної потреби.
+Походить з розділу `6. Розділ "Монети" — імпорт / експорт` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе у `src/features/coins/import-export`, а shared-шар торкається лише загальних validation/file helpers за реальної потреби.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -31,4 +31,3 @@
 - [ ] Перед реалізацією визначити поведінку повторного імпорту / дублювання записів
 
 ## Нотатки з реалізації
-

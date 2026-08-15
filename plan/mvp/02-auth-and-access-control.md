@@ -4,7 +4,7 @@
 не розпочато
 
 ## Зв'язок з roadmap
-Походить з розділу `1. Авторизація` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе переважно у `features/auth`, `shared/auth`, `app/(auth)` і `app/(app)`.
+Походить з розділу `1. Авторизація` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе переважно у `src/features/auth`, `src/shared/auth`, `src/app/(auth)` і `src/app/(app)`.
 
 ## Залежності
 - [00-architecture-and-structure.md](00-architecture-and-structure.md)
@@ -34,4 +34,3 @@
 - [ ] У доменних таблицях немає `owner_id`
 
 ## Нотатки з реалізації
-
