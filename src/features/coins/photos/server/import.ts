@@ -4,7 +4,7 @@ import { assertRemotePhotoUrlIsSafe } from '@/features/coins/photos/server/secur
 import { uploadCoinPhotoBuffer } from '@/features/coins/photos/server/storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-async function readResponseWithLimit(response: Response): Promise<Buffer> {
+export async function readResponseWithLimit(response: Response): Promise<Buffer> {
   if (!response.body) {
     throw new Error('Не вдалося отримати тіло відповіді для photo import.');
   }

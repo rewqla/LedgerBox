@@ -8,7 +8,9 @@
     "start": "next start",
     "test:db": "vitest run tests/integration/database/schema-and-rls.test.js",
     "test:auth": "vitest run tests/integration/auth",
-    "test:integration": "vitest run tests/integration"
+    "test:integration": "vitest run tests/integration",
+    "test:integration:local": "node tests/helpers/run-integration-tests.mjs",
+    "test:ci": "npm run test:integration:local && npm run build"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",

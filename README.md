@@ -2,7 +2,7 @@
 
 LedgerBox is a private collection site for coins first and bonds later. The MVP focuses on a shared authenticated coin collection built with Next.js App Router, Supabase, and Vercel.
 
-Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, the first CRUD/category/photo management flow for coins, the first compositional dashboard with coin analytics widgets, a separate text-based wishlist flow for coins, and MVP JSON import/export for the shared coin collection.
+Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, the protected app shell, the coin collection browse/search/detail surface, the first CRUD/category/photo management flow for coins, the first compositional dashboard with coin analytics widgets, a separate text-based wishlist flow for coins, MVP JSON import/export for the shared coin collection, and a formalized integration-testing + CI gate around the local Supabase stack.
 
 ## Technology
 
@@ -45,6 +45,7 @@ See:
 - [plan/mvp/06-dashboard-and-analytics.md](plan/mvp/06-dashboard-and-analytics.md)
 - [plan/mvp/07-wishlist.md](plan/mvp/07-wishlist.md)
 - [plan/mvp/08-import-export.md](plan/mvp/08-import-export.md)
+- [plan/mvp/09-testing-and-ci.md](plan/mvp/09-testing-and-ci.md)
 - [docs/adr/0001-use-src-application-root.md](docs/adr/0001-use-src-application-root.md)
 - [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md)
 - [skills/project-rules/SKILL.md](skills/project-rules/SKILL.md)
@@ -68,9 +69,9 @@ See:
 4. Review the scaffold in `src/app/`, `src/features/`, `src/shared/`, `supabase/`, and `tests/`.
 5. Start the local Supabase stack with `supabase start`.
 6. Bootstrap the first allowed user using [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md).
-7. Run `npm run test:integration` to verify the current database and auth logic.
+7. Run `npm run test:integration:local` to reset the local Supabase DB and execute the full integration suite on top of migrations and seeds.
 8. Start the app with `npm run dev` and open the login screen locally.
-9. Optionally run `npm run build` to verify the production App Router build.
+9. Run `npm run build` to verify the production App Router build.
 
 ## Database
 
@@ -78,6 +79,7 @@ See:
 - `supabase/migrations/20260814093000_init_db_architecture.sql` creates the `coins` and `bonds` schemas, core tables, constraints, RLS, and the private `coin-photos` bucket metadata
 - `supabase/seed.sql` inserts the initial categories `українська` and `закордонна`
 - `.github/workflows/database-checks.yml` starts Supabase locally in CI and runs the database integration tests on pull requests
+- `vitest.config.ts` and `tests/setup/integration-env.ts` now define the shared integration-test harness for local Supabase-backed tests
 - `.github/workflows/deploy-supabase-migrations.yml` links the remote Supabase project and applies migrations automatically on pushes to `main`
 
 ## Authentication
@@ -139,6 +141,14 @@ See:
 - Duplicate re-imports are not merged or updated; they are skipped and surfaced in the import report
 - Missing categories are recreated from `categoryName` during import so the textual collection structure can be restored
 - `tests/integration/import-export/helpers.test.ts` covers the payload contract, validation, duplicate signature logic, and summary reporting
+
+## Testing And CI
+
+- `tests/helpers/run-integration-tests.mjs` is the local runner that reuses the local Supabase stack, resets the DB with migrations/seeds, and then launches Vitest
+- `package.json` now exposes `test:integration`, `test:integration:local`, and `test:ci` as the main verification entrypoints
+- `tests/helpers/auth.js`, `tests/helpers/storage.js`, and `tests/helpers/supabase.ts` provide reusable assertions and setup for membership, RLS, storage metadata, and local service-role access
+- Coverage now includes category CRUD, coin CRUD/state, wishlist CRUD, explicit RLS access cases, photo processing size constraints, remote import size-limit handling, and storage upload/remove cleanup expectations
+- `.github/workflows/database-checks.yml` acts as the PR gate and runs local Supabase startup, the reset-backed integration suite, and the production build
 
 ## Planning flow
 
