@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { LogoutButton } from '@/features/auth/ui/logout-button';
 import { resolveAuthAccessState } from '@/shared/auth/access';
+import { AppShell } from '@/shared/ui/app-shell';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,14 +21,9 @@ export default async function ProtectedAppLayout({ children }: ProtectedLayoutPr
   }
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'grid',
-        gridTemplateRows: 'auto 1fr'
-      }}
-    >
-      <header
+    <AppShell
+      header={
+        <header
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -46,7 +42,9 @@ export default async function ProtectedAppLayout({ children }: ProtectedLayoutPr
         </div>
         <LogoutButton />
       </header>
-      <main style={{ padding: '2rem' }}>{children}</main>
-    </div>
+      }
+    >
+      {children}
+    </AppShell>
   );
 }

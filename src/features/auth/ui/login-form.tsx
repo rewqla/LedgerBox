@@ -2,10 +2,8 @@
 
 import type { CSSProperties } from 'react';
 import { useActionState } from 'react';
-import {
-  INITIAL_LOGIN_STATE,
-  loginAction
-} from '@/features/auth/server/actions';
+import { loginAction } from '@/features/auth/server/actions';
+import { INITIAL_LOGIN_STATE } from '@/features/auth/server/helpers';
 
 const inputStyle: CSSProperties = {
   width: '100%',

@@ -4,10 +4,9 @@ import { redirect } from 'next/navigation';
 import { createServerSupabaseClient } from '@/shared/supabase/server';
 import {
   authenticateWithPassword,
-  type LoginCredentials,
   type LoginFormState
 } from '@/features/auth/server/helpers';
-export { INITIAL_LOGIN_STATE } from '@/features/auth/server/helpers';
+import type { LoginCredentials } from '@/features/auth/server/helpers';
 
 function getTrimmedCredentials(formData: FormData): LoginCredentials {
   return {

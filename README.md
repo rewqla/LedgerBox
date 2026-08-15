@@ -2,7 +2,7 @@
 
 LedgerBox is a private collection site for coins first and bonds later. The MVP focuses on a shared authenticated coin collection built with Next.js App Router, Supabase, and Vercel.
 
-Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, and the first working authentication layer with Supabase SSR, guarded routes, and membership-based access control.
+Current implementation status: the repository now contains the agreed project scaffold under `src/`, the initial Supabase database architecture, a working Supabase SSR authentication layer, and the first protected app shell with sidebar navigation for dashboard, coin collection, and wishlist routes.
 
 ## Technology
 
@@ -29,12 +29,14 @@ Current implementation status: the repository now contains the agreed project sc
 - Supabase schema state is versioned in `supabase/migrations/`, with local seeds in `supabase/seed.sql`
 - Access control is based on `public.profiles`; domain tables stay shared and do not use `owner_id`
 - Route protection is enforced twice: in `proxy.ts` for request-time redirects and in `src/app/(app)/layout.tsx` for server-rendered protected surfaces
+- The protected shell keeps the sidebar layout mounted across App Router navigations, with `Дашборд` as a top-level route and `Монети` expanded into `Колекція` and `Бажанки`
 
 See:
 - [docs/roadmap.md](docs/roadmap.md)
 - [plan/mvp/00-architecture-and-structure.md](plan/mvp/00-architecture-and-structure.md)
 - [plan/mvp/01-db-architecture-and-migrations.md](plan/mvp/01-db-architecture-and-migrations.md)
 - [plan/mvp/02-auth-and-access-control.md](plan/mvp/02-auth-and-access-control.md)
+- [plan/mvp/03-app-shell-and-navigation.md](plan/mvp/03-app-shell-and-navigation.md)
 - [docs/adr/0001-use-src-application-root.md](docs/adr/0001-use-src-application-root.md)
 - [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md)
 - [skills/project-rules/SKILL.md](skills/project-rules/SKILL.md)
@@ -60,6 +62,7 @@ See:
 6. Bootstrap the first allowed user using [docs/bootstrap-first-user.md](docs/bootstrap-first-user.md).
 7. Run `npm run test:integration` to verify the current database and auth logic.
 8. Start the app with `npm run dev` and open the login screen locally.
+9. Optionally run `npm run build` to verify the production App Router build.
 
 ## Database
 
@@ -76,6 +79,13 @@ See:
 - `proxy.ts` redirects anonymous users to `/login`, users without membership to `/forbidden`, and signed-in members into `/dashboard`
 - `src/app/(auth)/login/page.tsx` and `src/app/(auth)/forbidden/page.tsx` cover the allowed entry states for non-app routes
 - `src/app/(app)/layout.tsx` protects server-rendered app routes even if the proxy layer is bypassed
+
+## App Shell
+
+- `src/shared/ui/theme.css` defines the current UI token layer for accent blue, amber badges, neutral structure colors, and serif/sans typography roles
+- `src/shared/ui/navigation.ts` contains the canonical sidebar navigation model and active-state helpers
+- `src/shared/ui/sidebar-nav.tsx` renders the expandable domain navigation with the muted `ОВДП` placeholder marked `скоро`
+- `src/app/(app)/coins/collection/page.tsx` and `src/app/(app)/coins/wishlist/page.tsx` are the current domain entry routes for the `Монети` section
 
 ## Planning flow
 

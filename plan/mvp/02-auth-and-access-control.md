@@ -1,7 +1,7 @@
 # 02. Авторизація і контроль доступу
 
 ## Статус
-потребує локальної перевірки
+завершено
 
 ## Зв'язок з roadmap
 Походить з розділу `1. Авторизація` у [../../docs/roadmap.md](../../docs/roadmap.md). Крок має слідувати [00-architecture-and-structure.md](00-architecture-and-structure.md): код живе переважно у `src/features/auth`, `src/shared/auth`, `src/app/(auth)` і `src/app/(app)`.
@@ -38,4 +38,4 @@
 - 2026-08-14: Реалізовано Supabase SSR helpers у `src/shared/supabase/*`, membership access resolution у `src/shared/auth/access.ts`, login/logout server actions і guarded redirects для анонімного користувача та користувача без `public.profiles`.
 - 2026-08-14: `supabase/config.toml` і надалі тримає `enable_signup = false`, а bootstrap першого користувача документовано через `docs/bootstrap-first-user.md` без фіксованих облікових даних.
 - 2026-08-14: Додано інтеграційні тести для auth redirect logic і login action helpers у `tests/integration/auth/*`, а CI workflow оновлено на `npm run test:integration`.
-- 2026-08-14: Локальна перевірка кроку не виконана в цьому середовищі, бо тут не встановлені нові npm-залежності і не запускався Next.js runtime після змін; перед позначенням кроку як `завершено` потрібен локальний `npm install` і прогін тестів.
+- 2026-08-14: Виконано локальну перевірку: `npm install`, `npm run test:integration` і `next build` пройшли успішно, тому крок закрито як `завершено`.

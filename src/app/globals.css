@@ -1,14 +1,4 @@
-:root {
-  color-scheme: light;
-  --background: #f4f6f8;
-  --surface: #ffffff;
-  --border: #d7dde3;
-  --foreground: #17212b;
-  --muted: #5c6b7b;
-  --accent: #2563eb;
-  --accent-foreground: #ffffff;
-  --danger: #b42318;
-}
+@import "@/shared/ui/theme.css";
 
 * {
   box-sizing: border-box;
@@ -22,7 +12,7 @@ body {
     radial-gradient(circle at top, rgba(37, 99, 235, 0.08), transparent 32%),
     linear-gradient(180deg, #f8fafc 0%, #eef2f6 100%);
   color: var(--foreground);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-sans);
 }
 
 body {
@@ -37,4 +27,8 @@ a {
 button,
 input {
   font: inherit;
+}
+
+button {
+  border: 0;
 }
